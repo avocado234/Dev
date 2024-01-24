@@ -47,6 +47,8 @@ def get_student(student_id):
 def create_student():
     data = request.get_json()
     collection.insert_one(data)
+    if not data:
+        return jsonify({"error":"Cannot create new student"}), 500
     
     return jsonify(data),201
 
